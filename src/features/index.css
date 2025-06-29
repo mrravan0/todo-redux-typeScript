@@ -18,4 +18,7 @@
   .container-features {
     @apply mx-auto w-full px-5;
   }
+  .button-custom {
+    @apply bg-custom-purple flex w-full cursor-pointer items-center justify-center rounded-md py-2.5 text-lg text-white duration-300 hover:scale-105;
+  }
 }

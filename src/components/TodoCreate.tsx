@@ -19,7 +19,6 @@ const TodoCreate: FC = () => {
     const payload: TodoType = {
       id: Math.floor(Math.random() * 9999999),
       content: inputText,
-      completed: false,
       checked: false,
     };
     dispatch(addTodoItems(payload));
@@ -30,7 +29,7 @@ const TodoCreate: FC = () => {
     <section className="pt-10 pb-7.5">
       <div className="container-features flex max-w-360 flex-col gap-y-5">
         <h1 className="text-center text-3xl">TODO LIST</h1>
-        <div className="flex items-center justify-between gap-x-4">
+        <div className="flex items-center justify-between gap-x-4 max-sm:flex-col max-sm:gap-y-10">
           <div
             className="border-custom-purple flex w-full cursor-pointer items-center justify-between rounded-md border border-solid px-4 py-3"
             onClick={() => inputRef.current?.focus()}
@@ -47,11 +46,16 @@ const TodoCreate: FC = () => {
             />
             <IoSearchOutline size={25} color="#6c63ff" />
           </div>
-          <button className="button-custom max-w-25" onClick={handleCreateTodo}>
-            Create
-          </button>
-          <div className="button-custom max-w-13">
-            <FaRegMoon size={30} />
+          <div className="flex items-center gap-x-2.5">
+            <button
+              className="button-custom w-25"
+              onClick={handleCreateTodo}
+            >
+              Create
+            </button>
+            <button className="button-custom max-w-13">
+              <FaRegMoon size={30} />
+            </button>
           </div>
         </div>
       </div>

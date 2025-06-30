@@ -24,16 +24,12 @@ export const todoSlice = createSlice({
         ...state.todos.filter((item: TodoType) => item.id !== actions.payload),
       ];
     },
-    completedTodo: (
-      state: TodoInitialState,
-      actions: PayloadAction<number>,
-    ) => {
-      const completedTodo = state.todos.find(
-        (item: TodoType) => item.id === actions.payload,
-      );
-      if (completedTodo) {
-        completedTodo.completed = !completedTodo.completed;
-      }
+    updateTodo: (state: TodoInitialState, actions: PayloadAction<TodoType>) => {
+      state.todos = [
+        ...state.todos.map((item: TodoType) =>
+          item.id !== actions.payload.id ? item : actions.payload,
+        ),
+      ];
     },
     checkedTodo: (state: TodoInitialState, actions: PayloadAction<number>) => {
       const checkedTodo = state.todos.find(
@@ -46,6 +42,6 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { addTodoItems, removeTodoItems, completedTodo, checkedTodo } =
+export const { addTodoItems, removeTodoItems, updateTodo, checkedTodo } =
   todoSlice.actions;
 export default todoSlice.reducer;

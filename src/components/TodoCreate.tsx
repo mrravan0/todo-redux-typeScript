@@ -17,14 +17,15 @@ const TodoCreate: FC = () => {
     }
 
     const payload: TodoType = {
-      id: Math.floor(Math.random() * 10),
+      id: Math.floor(Math.random() * 9999999),
       content: inputText,
+      completed: false,
+      checked: false,
     };
     dispatch(addTodoItems(payload));
     setInputText("");
   };
 
-  
   return (
     <section className="pt-10 pb-7.5">
       <div className="container-features flex max-w-360 flex-col gap-y-5">
@@ -35,11 +36,11 @@ const TodoCreate: FC = () => {
             onClick={() => inputRef.current?.focus()}
           >
             <input
-              className="placeholder:text-custom-purple w-full outline-none"
+              className="placeholder:text-custom-purple w-full text-2xl outline-none"
               type="text"
               value={inputText}
               ref={inputRef}
-              placeholder="Search note..."
+              placeholder="Input your note..."
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
                 setInputText(event.target.value)
               }

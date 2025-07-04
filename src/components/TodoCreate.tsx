@@ -1,6 +1,7 @@
-import { useRef, useState, type ChangeEvent, type FC } from "react";
+import { useEffect, useRef, useState, type ChangeEvent, type FC } from "react";
 import { FaRegMoon } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
+import { LuSun } from "react-icons/lu";
 import { useDispatch } from "react-redux";
 import { addTodoItems } from "../redux/TodoSlice";
 import type { TodoType } from "../types/TodoTypes";
@@ -8,11 +9,12 @@ import type { TodoType } from "../types/TodoTypes";
 const TodoCreate: FC = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [inputText, setInputText] = useState<string>("");
+  const [theme, setTheme] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const handleCreateTodo = () => {
     if (inputText.trim().length === 0) {
-      alert("Please complete your todo");
+      alert("Please type anything");
       return;
     }
 
@@ -24,6 +26,11 @@ const TodoCreate: FC = () => {
     dispatch(addTodoItems(payload));
     setInputText("");
   };
+
+  useEffect(() => {
+    document.body.classList.toggle("dark-theme", theme);
+    document.body.classList.toggle("light-theme", !theme);
+  }, [theme]);
 
   return (
     <section className="pt-10 pb-7.5">
@@ -47,14 +54,14 @@ const TodoCreate: FC = () => {
             <IoSearchOutline size={25} color="#6c63ff" />
           </div>
           <div className="flex items-center gap-x-2.5">
-            <button
-              className="button-custom w-25"
-              onClick={handleCreateTodo}
-            >
+            <button className="button-custom w-25" onClick={handleCreateTodo}>
               Create
             </button>
-            <button className="button-custom max-w-13">
-              <FaRegMoon size={30} />
+            <button
+              className="button-custom max-w-13"
+              onClick={() => setTheme(!theme)}
+            >
+              {theme ? <LuSun size={30} /> : <FaRegMoon size={30} />}
             </button>
           </div>
         </div>

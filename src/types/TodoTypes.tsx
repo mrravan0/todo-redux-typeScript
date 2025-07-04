@@ -7,3 +7,7 @@ export type TodoType = {
 export type TodoInitialState = {
   todos: TodoType[];
 };
+
+export type TodoInitialStateUi = {
+  todoUiInfo:boolean;
+}

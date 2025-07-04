@@ -1,5 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice,type  PayloadAction} from "@reduxjs/toolkit";
 import type { TodoInitialState, TodoType } from "../types/TodoTypes";
 
 const initialState: TodoInitialState = {

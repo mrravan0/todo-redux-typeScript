@@ -41,7 +41,7 @@ const TodoInner: FC<TodoInnerProps> = ({ data }) => {
           className="border-custom-purple flex size-7.5 items-center justify-center rounded-sm border-2 border-solid duration-200 hover:scale-105"
           onClick={() => dispatch(checkedTodo(data.id))}
         >
-          <FaCheck size={25} color={data.checked ? "#6c63ff" : "white"} />
+          {data.checked && <FaCheck size={25} color="#6c63ff" />}
         </div>
         {isChange ? (
           <input
@@ -55,7 +55,7 @@ const TodoInner: FC<TodoInnerProps> = ({ data }) => {
           />
         ) : (
           <p
-            className={`${data.checked ? "text-custom-grey line-through" : ""} text-xl`}
+            className={`${data.checked ? "text-custom-purple line-through" : ""} text-2xl`}
           >
             {data.content}
           </p>
